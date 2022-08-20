@@ -1,0 +1,21 @@
+---
+# NameCheap tasks file for ansible-role-domain-tools
+
+# https://docs.ansible.com/ansible/latest/modules/uri_module.html
+# https://www.namecheap.com/support/api/global-parameters.aspx
+- name: "Get List of Domains"
+  ansible.builtin.uri:
+    # https://www.namecheap.com/support/api/intro.aspx
+    # https://www.namecheap.com/support/api/methods/domains/get-list.aspx
+    url: "{{ url }}?ApiUser={{ username }}&ApiKey={{ key }}&UserName={{ username }}&Command=namecheap.domains.getList&ClientIp={{ clientIP }}"
+    return_content: yes
+  register: response
+  when: action == "domain-list"
+
+- name: "Get List of Certificates"
+  ansible.builtin.uri:
+    # https://www.namecheap.com/support/api/methods/ssl/get-list.aspx
+    url: "{{ url }}?ApiUser={{ username }}&ApiKey={{ key }}&UserName={{ username }}&Command=namecheap.ssl.getList&ClientIp={{ clientIP }}"
+    return_content: yes
+  register: response
+  when: action == "ssl-list"

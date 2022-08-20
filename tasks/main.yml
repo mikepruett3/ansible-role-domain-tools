@@ -1,2 +1,13 @@
 ---
 # tasks file for ansible-role-domain-tools
+
+- name: "Get list of Domains from {{ api }}"
+  ansible.builtin.include_tasks: namecheap.yaml
+  vars:
+    url: "{{ nc_url }}"
+    username: "{{ nc_username }}"
+    key: "{{ nc_key }}"
+    action: "domain-list"
+  when:
+    - api == "namecheap"
+    - action == "domain-list"

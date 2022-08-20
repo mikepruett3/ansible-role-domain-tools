@@ -1,2 +1,9 @@
 ---
-# defaults file for ansible-role-domain-tools
+# defaults file for ansible-role-certificate-tools
+
+clientIP: "1.1.1.1"
+
+#NameCheap API Settings
+nc_url: "https://api.sandbox.namecheap.com/xml.response"
+nc_username: "api"
+nc_key: "api-key"
